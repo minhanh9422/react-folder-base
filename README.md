@@ -2,4 +2,5 @@
 
 clone
 
-git clone https://github.com/username/repository.git <directory>
+git clone https://github.com/minhanh9422/react-folder-base.git
+
