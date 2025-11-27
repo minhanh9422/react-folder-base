@@ -1,0 +1,65 @@
+"use client";
+import { useState } from "react";
+import HeaderSection from "../components/Header";
+
+export default function About() {
+  const [display, setDisplay] = useState("");
+
+  // Thêm ký tự vào display
+  const handleClick = (value) => {
+    setDisplay((prev) => prev + value);
+  };
+
+  // Xóa display
+  const handleClear = () => {
+    setDisplay("");
+  };
+
+  // Tính toán kết quả
+  const handleEquals = () => {
+    try {
+      setDisplay(eval(display).toString());
+    } catch {
+      setDisplay("Error");
+    }
+  };
+
+  return (
+    <>
+      <HeaderSection />
+      <main style={{ textAlign: "center", marginTop: "2rem" }}>
+        <h2>A simple calculator</h2>
+        <div className="calculator" style={{ display: "inline-block" }}>
+          <input
+            type="text"
+            value={display}
+            readOnly
+            style={{ width: "200px", height: "40px", textAlign: "right", marginBottom: "1rem" }}
+          />
+          <br />
+          <div>
+            {["1","2","3","+"].map((val) => (
+              <button key={val} onClick={() => handleClick(val)}>{val}</button>
+            ))}
+          </div>
+          <div>
+            {["4","5","6","-"].map((val) => (
+              <button key={val} onClick={() => handleClick(val)}>{val}</button>
+            ))}
+          </div>
+          <div>
+            {["7","8","9","*"].map((val) => (
+              <button key={val} onClick={() => handleClick(val)}>{val}</button>
+            ))}
+          </div>
+          <div>
+            <button onClick={handleClear}>C</button>
+            <button onClick={() => handleClick("0")}>0</button>
+            <button onClick={handleEquals}>=</button>
+            <button onClick={() => handleClick("/")}>/</button>
+          </div>
+        </div>
+      </main>
+    </>
+  );
+}
